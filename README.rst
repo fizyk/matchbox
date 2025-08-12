@@ -27,8 +27,8 @@ Matchbox is a simple python library designed to make selecting object, or object
 
 Documentation:
 
-* `Documentation <http://fizyk/.github.io/matchbox/docs/>`_
-* `Benchmarks <http://fizyk/.github.io/matchbox/benchmark/>`_
+* `Documentation <http://fizyk.github.io/matchbox/docs/>`_
+* `Benchmarks <http://fizyk.github.io/matchbox/benchmarks/>`_
 
 
 
