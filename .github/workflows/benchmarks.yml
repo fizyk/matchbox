@@ -24,6 +24,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         command: "pytest benchmarks/  --benchmark-json output.json"
+        allow-prereleases: false
     - name: Analyse benchmark results for Pull Requests
       uses: benchmark-action/github-action-benchmark@v1.20.4
       if: ${{ github.ref != 'refs/heads/main' }}

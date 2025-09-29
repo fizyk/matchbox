@@ -16,6 +16,7 @@ jobs:
         with:
           python-version: "3.13"
           command: "sphinx-build -b html docs/source build/html"
+          allow-prereleases: false
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
