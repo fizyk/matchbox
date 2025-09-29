@@ -12,10 +12,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
-      - uses: fizyk/actions-reuse/.github/actions/pipenv@v3.1.1
+      - uses: fizyk/actions-reuse/.github/actions/pipenv@v4.1.1
         with:
           python-version: "3.13"
           command: "sphinx-build -b html docs/source build/html"
+          allow-prereleases: false
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
