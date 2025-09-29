@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "pypy-3.10"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy-3.10"]
     env:
       OS: ubuntu-latest
       PYTHON: ${{ matrix.python-version }}
@@ -24,7 +24,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         command: "pytest benchmarks/  --benchmark-json output.json"
-        allow-prereleases: false
+        allow-prereleases: true
     - name: Analyse benchmark results for Pull Requests
       uses: benchmark-action/github-action-benchmark@v1.20.4
       if: ${{ github.ref != 'refs/heads/main' }}
