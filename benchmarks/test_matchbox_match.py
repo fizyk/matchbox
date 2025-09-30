@@ -1,10 +1,9 @@
 """Benchmark tests comparing different approaches to same problem - finiding fitting element."""
 
 from random import Random
-from typing import List, Optional, Set, Union
 
 import pytest
-from pytest_benchmark.session import BenchmarkSession
+from pytest_benchmark.fixture import BenchmarkFixture
 
 from benchmarks import COLOURS, MAX_LEGS, SIZE, Chair
 from matchbox import MatchBox
@@ -23,8 +22,8 @@ ARMREST_TRAIT = RANDOM_CHECKER_ARMREST.choice([True, False])
 
 
 def run_match_matchboxes(
-    boxes: List[MatchBox], chairs: Set[Chair], values: List[Union[Optional[str], int, bool]]
-) -> Set[Chair]:
+    boxes: list[MatchBox], chairs: set[Chair], values: list[str | int | bool | None]
+) -> set[Chair]:
     """Test run with matchboxes."""
     for box, value in zip(boxes, values):
         if value is None:
@@ -34,8 +33,8 @@ def run_match_matchboxes(
 
 
 def run_match_one_after_another(
-    chairs: Set[Chair], colour: Optional[str], legs: int, size: int, weight: int, armrest: bool
-) -> Set[Chair]:  # pylint:disable=too-many-branches
+    chairs: set[Chair], colour: str | None, legs: int, size: int, weight: int, armrest: bool
+) -> set[Chair]:  # pylint:disable=too-many-branches
     """Test run with individual for loops and checking of each characteristic."""
     matched = set([])
     for chair in chairs:
@@ -88,8 +87,8 @@ def run_match_one_after_another(
 
 
 def run_match_one_for_multi_condition(
-    chairs: Set[Chair], colour: Optional[str], legs: int, size: int, weight: int, armrest: bool
-) -> Set[Chair]:
+    chairs: set[Chair], colour: str | None, legs: int, size: int, weight: int, armrest: bool
+) -> set[Chair]:
     """One test with one for loop but multi condition."""
     matched = set([])
     for chair in chairs:
@@ -127,7 +126,7 @@ def run_match_one_for_multi_condition(
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_matchbox(benchmark: BenchmarkSession, boxes: List[MatchBox], chairs: Set[Chair]) -> None:
+def test_match_matchbox(benchmark: BenchmarkFixture, boxes: list[MatchBox], chairs: set[Chair]) -> None:
     """Benchmark for finding matches using matchboxes."""
     benchmark(
         run_match_matchboxes,
@@ -138,7 +137,7 @@ def test_match_matchbox(benchmark: BenchmarkSession, boxes: List[MatchBox], chai
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_one_after_another(benchmark: BenchmarkSession, chairs: Set[Chair]) -> None:
+def test_match_one_after_another(benchmark: BenchmarkFixture, chairs: set[Chair]) -> None:
     """Benchmark for finding matches using subsequent iterations per each characteristic."""
     benchmark(
         run_match_one_after_another,
@@ -152,7 +151,7 @@ def test_match_one_after_another(benchmark: BenchmarkSession, chairs: Set[Chair]
 
 
 @pytest.mark.benchmark(group="match_all_categories")
-def test_match_one_for_multi_condition(benchmark: BenchmarkSession, chairs: Set[Chair]) -> None:
+def test_match_one_for_multi_condition(benchmark: BenchmarkFixture, chairs: set[Chair]) -> None:
     """Benchmark for finding matches using one iteration, and checking each desired conditions."""
     benchmark(
         run_match_one_for_multi_condition,
@@ -165,7 +164,7 @@ def test_match_one_for_multi_condition(benchmark: BenchmarkSession, chairs: Set[
     )
 
 
-def test_match_one_after_another_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
+def test_match_one_after_another_check_matchbox(boxes: list[MatchBox], chairs: set[Chair]) -> None:
     """Check if subsequent iterations checking return same result as matchboxes."""
     assert run_match_matchboxes(
         boxes,
@@ -174,7 +173,7 @@ def test_match_one_after_another_check_matchbox(boxes: List[MatchBox], chairs: S
     ) == run_match_one_after_another(chairs, COLOUR_TRAIT, LEGS_TRAIT, SIZE_TRAIT, WEIGHT_TRAIT, ARMREST_TRAIT)
 
 
-def test_match_one_for_multi_condition_check_matchbox(boxes: List[MatchBox], chairs: Set[Chair]) -> None:
+def test_match_one_for_multi_condition_check_matchbox(boxes: list[MatchBox], chairs: set[Chair]) -> None:
     """Check if one interation result finiding return same result as matchboxes."""
     assert run_match_matchboxes(
         boxes,

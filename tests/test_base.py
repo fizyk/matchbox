@@ -1,7 +1,7 @@
 """Tests for basic functionality of MatchBox and basic data structure."""
 
 from collections import defaultdict
-from typing import Any, List, Union
+from typing import Any
 
 import pytest
 
@@ -67,7 +67,7 @@ def test_repr(characteristic: str) -> None:
 
 
 @pytest.mark.parametrize("empty_trait", (None, []))
-def test_matchbox_empty_trait(empty_trait: Union[List[bool], bool, None]) -> None:
+def test_matchbox_empty_trait(empty_trait: list[bool] | bool | None) -> None:
     """Check extracting object's traits if it is recognised as not used."""
     obj = Entity[Any](empty_trait)
 
@@ -80,7 +80,7 @@ def test_matchbox_empty_trait(empty_trait: Union[List[bool], bool, None]) -> Non
 
 
 @pytest.mark.parametrize("falsy_trait", ((), False, ""))
-def test_matchbox_falsy_used_trait(falsy_trait: Union[List[bool], bool, None]) -> None:
+def test_matchbox_falsy_used_trait(falsy_trait: list[bool] | bool | None) -> None:
     """Check simple adding object to index if it does match characteristic's traits."""
     obj = Entity[bool](falsy_trait)
 
