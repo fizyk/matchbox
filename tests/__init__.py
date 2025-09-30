@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """matchbox's tests."""
-from typing import Generic, List, Optional, Union
+from typing import Generic
 
 from matchbox.index import TT
 
@@ -8,7 +8,7 @@ from matchbox.index import TT
 class Entity(Generic[TT]):  # pylint:disable=too-few-public-methods
     """Dummy entity to be indexed."""
 
-    def __init__(self, trait: Optional[Union[List[TT], TT]], matches: bool = True):
+    def __init__(self, trait: list[TT] | TT | None, matches: bool = True):
         """Initialize Dummy entity.
 
         :param trait: characteristic trait.

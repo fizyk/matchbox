@@ -1,6 +1,6 @@
 """Tests for match method."""
 
-from typing import Any, List, Union
+from typing import Any
 
 import pytest
 
@@ -55,7 +55,7 @@ def test_indexed_match(traits: Any) -> None:
 
 
 @pytest.mark.parametrize("traits", ("x", ["x", "y"], ["z"], [1, 2, 3, None]))
-def test_multimatchbox_indexed_not_match(traits: Union[List[Any], Any]) -> None:
+def test_multimatchbox_indexed_not_match(traits: list[Any] | Any) -> None:
     """Check simple adding entity to index if it does not match a certain characteristic's trait.
 
     In this case entity gets recorded on index.
