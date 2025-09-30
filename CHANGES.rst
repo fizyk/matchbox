@@ -3,6 +3,30 @@ CHANGELOG
 
 .. towncrier release notes start
 
+matchbox 1.3.0 (2025-09-30)
+===========================
+
+Breaking changes
+----------------
+
+- Drop support for Python 3.9
+
+
+Features
+--------
+
+- Add support for Python 3.14
+
+
+Miscellaneus
+------------
+
+- Fix documentation urls in readme.
+- Replace black with ruff-check
+- Update benchmark action to newer location
+- Update workflows for actions-reuse 4.x
+
+
 1.2.3 (2025-02-20)
 ==================
 
