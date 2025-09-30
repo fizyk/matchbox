@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Data structure that allows indexing includes and excludes of values."""
+
 from collections import defaultdict
 from typing import Dict, Generic, Hashable, Set, TypeVar
 

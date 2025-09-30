@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """matchbox's tests."""
+
 from typing import Generic
 
 from matchbox.index import TT
