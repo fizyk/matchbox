@@ -1,0 +1,1 @@
+Fix benchmark fixture typing
