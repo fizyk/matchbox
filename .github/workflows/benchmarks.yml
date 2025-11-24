@@ -15,7 +15,7 @@ jobs:
     # Service containers to run with `container-job`
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - uses: fizyk/actions-reuse/.github/actions/pipenv@v4.1.1
       with:
         python-version: ${{ matrix.python-version }}
