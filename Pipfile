@@ -10,6 +10,6 @@ towncrier = "==25.8.0"
 pytest = "==9.0.0"
 pytest-benchmark = "==5.2.1"
 pytest-cov = "==7.0.0"
-mypy = "==1.18.2"
+mypy = "==1.19.0"
 tbump = "==6.11.0"
 sphinx = {version = "==8.2.3", markers="python_version >= '3.12'"}
