@@ -12,4 +12,4 @@ pytest-benchmark = "==5.2.3"
 pytest-cov = "==7.0.0"
 mypy = {version = "==1.19.1", markers="implementation_name == 'cpython'"}
 tbump = "==6.11.0"
-sphinx = {version = "==8.2.3", markers="python_version >= '3.12'"}
+sphinx = {version = "==9.1.0", markers="python_version >= '3.12'"}
