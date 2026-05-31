@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
-      - uses: fizyk/actions-reuse/.github/actions/pipenv@v4.4.7
+      - uses: fizyk/actions-reuse/.github/actions/uv@14e008c246b7b8eeab7cb5c543117471fee37310 # v5.1.2
         with:
-          python-version: "3.13"
+          python-version: "3.14"
           command: "sphinx-build -b html docs/source build/html"
           allow-prereleases: false
       - name: Deploy

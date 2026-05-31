@@ -3,9 +3,6 @@ __pycache__/
 *.py[cod]
 venv/
 
-# Pipenv
-Pipfile.lock
-
 # C extensions
 *.so
 
