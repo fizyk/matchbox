@@ -24,7 +24,7 @@ jobs:
         command: "pytest benchmarks/  --benchmark-json output.json"
         allow-prereleases: true
     - name: Analyse benchmark results for Pull Requests
-      uses: benchmark-action/github-action-benchmark@a60cea5bc7b49e15c1f58f411161f99e0df48372 # v1.22.0
+      uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1.22.1
       if: ${{ github.ref != 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
@@ -39,7 +39,7 @@ jobs:
         fail-on-alert: false
         alert-comment-cc-users: '@fizyk'
     - name: Store benchmark result for master branch
-      uses: benchmark-action/github-action-benchmark@a60cea5bc7b49e15c1f58f411161f99e0df48372 # v1.22.0
+      uses: benchmark-action/github-action-benchmark@52576c92bccf6ac60c8223ec7eb2565637cae9ba # v1.22.1
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
