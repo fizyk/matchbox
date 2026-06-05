@@ -1,0 +1,2 @@
+Pin all actions by their commit hash.
+Set persist-credentials to false for benchmarks workflow.

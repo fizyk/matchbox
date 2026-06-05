@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: fizyk/actions-reuse/.github/actions/uv@14e008c246b7b8eeab7cb5c543117471fee37310 # v5.1.2
         with:
           python-version: "3.14"
           command: "sphinx-build -b html docs/source build/html"
           allow-prereleases: false
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4.1.0
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
         with:
           publish_branch: gh-pages
