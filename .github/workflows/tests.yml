@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    uses: fizyk/actions-reuse/.github/workflows/shared-tests-pytests.yml@a705c3602adb3ef95f7f4bdf81dcacd3a136d86e # v5.0.0
+    uses: fizyk/actions-reuse/.github/workflows/shared-tests-pytests.yml@14e008c246b7b8eeab7cb5c543117471fee37310 # v5.1.2
     with:
       python-versions: '["3.10", "3.11", "3.12", "3.13", "3.14", "pypy-3.11"]'
       dependency-manager: uv
