@@ -18,7 +18,8 @@
 """Data structure that allows indexing includes and excludes of values."""
 
 from collections import defaultdict
-from typing import Dict, Generic, Hashable, Set, TypeVar
+from collections.abc import Hashable
+from typing import Generic, TypeVar
 
 ET = TypeVar("ET", bound=Hashable)
 TT = TypeVar("TT", bound=Hashable)
@@ -134,13 +135,13 @@ class MatchIndex(Generic[TT, ET]):
 
     def __init__(self) -> None:
         """Initialize the index."""
-        self.mismatch_unknown: Set[ET] = set()
+        self.mismatch_unknown: set[ET] = set()
         """
         This set will keep matching entities. They do not match unknown traits.
 
         Used for `self.index` default value, that means any previously unknown trait.
         """
-        self.index: Dict[TT, Set[ET]] = defaultdict(self.mismatch_unknown.copy)
+        self.index: dict[TT, set[ET]] = defaultdict(self.mismatch_unknown.copy)
 
     def add_mismatch(self, entity: ET, *traits: TT) -> None:
         """Add a mismatching entity to the index.
@@ -181,7 +182,7 @@ class MatchIndex(Generic[TT, ET]):
         # From now on, any new matching or mismatching index will mismatch this entity by default.
         self.mismatch_unknown.add(entity)
 
-    def mismatch(self, trait: TT) -> Set[ET]:
+    def mismatch(self, trait: TT) -> set[ET]:
         """Return a set of indexed entities that are mismatched by the trait.
 
         The returned set can be used for filtering by substracting it from another set created by a previous MatchIndex
@@ -193,7 +194,7 @@ class MatchIndex(Generic[TT, ET]):
         """
         return self.index[trait]
 
-    def match(self, collection: Set[ET], trait: TT) -> Set[ET]:
+    def match(self, collection: set[ET], trait: TT) -> set[ET]:
         """Filter out those entities from collection that do not match the trait.
 
         .. note ::

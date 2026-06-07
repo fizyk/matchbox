@@ -17,9 +17,9 @@
 # along with matchbox.  If not, see <http://www.gnu.org/licenses/>.
 """Match box - for indexing objects by their fields."""
 
-from collections.abc import Hashable
+from collections.abc import Hashable, Iterable
 from dataclasses import dataclass
-from typing import Generic, Iterable, Set
+from typing import Generic
 
 from matchbox.index import ET, TT, MatchIndex
 
@@ -66,7 +66,7 @@ class MatchBox(MatchIndex[TT, ET]):
         super().__init__()
         self._characteristic = characteristic
 
-    def extract_traits(self, entity: ET) -> Trait:
+    def extract_traits(self, entity: ET) -> Trait[TT]:
         """Extract data required to classify entity.
 
         :param object entity:
@@ -97,7 +97,7 @@ class MatchBox(MatchIndex[TT, ET]):
 
         :param object entity:
         """
-        empty_traits: Set[TT] = set()
+        empty_traits: set[TT] = set()
         self.mismatch_unknown.discard(entity)
         for trait, entities in self.index.items():
             entities.discard(entity)

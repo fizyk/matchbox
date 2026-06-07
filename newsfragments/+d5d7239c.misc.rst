@@ -1,0 +1,1 @@
+Modernise typing from pre-python 3.9 syntax
