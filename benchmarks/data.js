@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785191191624,
+  "lastUpdate": 1785191234552,
   "repoUrl": "https://github.com/fizyk/matchbox",
   "entries": {
     "Matchbox performance benchmarks on Python 3.9": [
@@ -90050,6 +90050,128 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.00012290167895327635",
             "extra": "mean: 4.31649508119689 msec\nrounds: 234"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "119339316+merger-application[bot]@users.noreply.github.com",
+            "name": "merger-application[bot]",
+            "username": "merger-application[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1031956c1bbee253a27159b882387da2ff167eba",
+          "message": "[pre-commit.ci] pre-commit autoupdate",
+          "timestamp": "2026-07-27T22:22:22Z",
+          "tree_id": "09cd8beb25dec84edebc351e6b03f09543de5329",
+          "url": "https://github.com/fizyk/matchbox/commit/1031956c1bbee253a27159b882387da2ff167eba"
+        },
+        "date": 1785191221360,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_create[colour]",
+            "value": 13.472919230733382,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0013081487919491019",
+            "extra": "mean: 74.22296407142984 msec\nrounds: 14"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_create[legs]",
+            "value": 13.531377936460107,
+            "unit": "iter/sec",
+            "range": "stddev: 0.003842317633860759",
+            "extra": "mean: 73.90230357142816 msec\nrounds: 14"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_create[size]",
+            "value": 0.7575825851166264,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0034813026199721495",
+            "extra": "mean: 1.319988103800003 sec\nrounds: 5"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_create[weight]",
+            "value": 0.7531421996717527,
+            "unit": "iter/sec",
+            "range": "stddev: 0.011994537710916015",
+            "extra": "mean: 1.327770506599998 sec\nrounds: 5"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_create[armrest]",
+            "value": 21.36502876098402,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0004146992582609613",
+            "extra": "mean: 46.80546004347819 msec\nrounds: 23"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsSameValueAndMatching]",
+            "value": 1280303.910975222,
+            "unit": "iter/sec",
+            "range": "stddev: 3.762334688637395e-7",
+            "extra": "mean: 781.0645514925395 nsec\nrounds: 177968"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsDifferentValueAndMatching]",
+            "value": 1136416.388067235,
+            "unit": "iter/sec",
+            "range": "stddev: 2.8126164471946274e-7",
+            "extra": "mean: 879.9591509769891 nsec\nrounds: 153989"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsSameValueAndNotMatching]",
+            "value": 1693128.6676996197,
+            "unit": "iter/sec",
+            "range": "stddev: 2.456425402973185e-7",
+            "extra": "mean: 590.6225670129757 nsec\nrounds: 181687"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsDifferentValueAndNotMatching]",
+            "value": 2050298.715151019,
+            "unit": "iter/sec",
+            "range": "stddev: 2.6592301679416403e-7",
+            "extra": "mean: 487.733808059443 nsec\nrounds: 187196"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsSameValueAndOneMatchingOtherNo]",
+            "value": 1976356.3365166993,
+            "unit": "iter/sec",
+            "range": "stddev: 9.622291810647415e-8",
+            "extra": "mean: 505.98162969056324 nsec\nrounds: 184673"
+          },
+          {
+            "name": "benchmarks/test_matchbox_add.py::test_add[TwoElementsDifferentValueAndOneMatchingOtherNo]",
+            "value": 1696867.1910690146,
+            "unit": "iter/sec",
+            "range": "stddev: 1.2530632695022143e-7",
+            "extra": "mean: 589.3213123945131 nsec\nrounds: 194591"
+          },
+          {
+            "name": "benchmarks/test_matchbox_match.py::test_match_matchbox",
+            "value": 101.19360447795108,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002913287931417827",
+            "extra": "mean: 9.88204743925184 msec\nrounds: 107"
+          },
+          {
+            "name": "benchmarks/test_matchbox_match.py::test_match_one_after_another",
+            "value": 60.072550362828565,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0006961895191523132",
+            "extra": "mean: 16.646538126984126 msec\nrounds: 63"
+          },
+          {
+            "name": "benchmarks/test_matchbox_match.py::test_match_one_for_multi_condition",
+            "value": 254.7088491744031,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00006139452497287216",
+            "extra": "mean: 3.926051266932169 msec\nrounds: 251"
           }
         ]
       }
