@@ -9,4 +9,4 @@ on:
 
 jobs:
   build:
-    uses: fizyk/actions-reuse/.github/workflows/shared-pypi.yml@e434952f57d1da48b52d0fe5454b365b2f297d2d # v5.2.6
+    uses: fizyk/actions-reuse/.github/workflows/shared-pypi.yml@ae6177442c58a91f60ffaf7f7a90a331aaf3b049 # v5.4.1
