@@ -6,8 +6,12 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: {}
+
 jobs:
   tests:
+    permissions:
+      contents: read  # actions/checkout in the called workflow
     uses: fizyk/actions-reuse/.github/workflows/shared-tests-pytests.yml@42b61e053c1d70a61deb42b323c1a2229e2e7fe0 # v5.5.0
     with:
       python-versions: '["3.10", "3.11", "3.12", "3.13", "3.14", "3.15", "pypy-3.11"]'
@@ -16,4 +20,13 @@ jobs:
       codecov_token: ${{ secrets.CODECOV_TOKEN }}
   benchmark:
     needs: tests
+    if: ${{ github.ref != 'refs/heads/main' }}
+    permissions:
+      contents: read  # actions/checkout in the called workflow
+    uses: ./.github/workflows/benchmarks.yml
+  benchmark-publish:
+    needs: tests
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: write  # github-action-benchmark pushes results and comments on commits
     uses: ./.github/workflows/benchmarks.yml
