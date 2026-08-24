@@ -6,12 +6,19 @@ on:
       - v*
   pull_request:
     branches: [main]
+
+permissions: {}
+
 jobs:
   docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # peaceiris/actions-gh-pages pushes the built docs to gh-pages
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: fizyk/actions-reuse/.github/actions/uv@42b61e053c1d70a61deb42b323c1a2229e2e7fe0 # v5.5.0
         with:
           python-version: "3.14"

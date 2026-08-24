@@ -1,6 +1,6 @@
 ---
 ci:
-  skip: [pipenv, mypy]
+  skip: [uv-sync, mypy]
 
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
@@ -40,6 +40,18 @@ repos:
     hooks:
       - id: pyproject-fmt
 
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.29.0
+    hooks:
+      - id: zizmor
+        args: [--no-progress, --fix]
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
   - repo: https://github.com/fizyk/pyproject-validator
     rev: v0.1.0
     hooks:
@@ -47,7 +59,7 @@ repos:
 
   - repo: local
     hooks:
-      - id: pipenv
+      - id: uv-sync
         stages: [pre-commit, manual]
         language: system
         name: Install dependencies for the local linters
