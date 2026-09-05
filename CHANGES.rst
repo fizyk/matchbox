@@ -3,6 +3,23 @@ CHANGELOG
 
 .. towncrier release notes start
 
+matchbox 1.3.1 (2026-09-05)
+===========================
+
+Miscellaneous
+-------------
+
+- `#727 <https://github.com/fizyk/matchbox/issues/727>`_, `#732 <https://github.com/fizyk/matchbox/issues/732>`_, `#784 <https://github.com/fizyk/matchbox/issues/784>`_, `#824 <https://github.com/fizyk/matchbox/issues/824>`_, `#831 <https://github.com/fizyk/matchbox/issues/831>`_, `#836 <https://github.com/fizyk/matchbox/issues/836>`_, `#837 <https://github.com/fizyk/matchbox/issues/837>`_, `#838 <https://github.com/fizyk/matchbox/issues/838>`_
+- Add Python 3.15 to CI
+- Add trusted publishing workflow
+- Extend pre-commit with pyproject-fmt to format pyproject.toml
+- Extend pre-commit with pyproject-validator
+- Fix benchmark fixture typing
+- Migrate dev env and build system to uv
+- Modernise typing from pre-python 3.9 syntax
+- Stop posting PR comments on benchmark regression alerts to avoid GITHUB_TOKEN permission errors; surface results in the job summary instead.
+
+
 matchbox 1.3.0 (2025-09-30)
 ===========================
 
