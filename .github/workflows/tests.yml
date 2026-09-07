@@ -23,10 +23,10 @@ jobs:
     if: ${{ github.ref != 'refs/heads/main' }}
     permissions:
       contents: read  # actions/checkout in the called workflow
-    uses: ./.github/workflows/benchmarks.yml
+    uses: $/.github/workflows/benchmarks.yml
   benchmark-publish:
     needs: tests
     if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       contents: write  # github-action-benchmark pushes results and comments on commits
-    uses: ./.github/workflows/benchmarks.yml
+    uses: $/.github/workflows/benchmarks.yml
