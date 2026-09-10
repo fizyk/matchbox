@@ -1,0 +1,1 @@
+Replate `rhysd/actionlint` with `kjanat/actionlint`, a maintained fork.

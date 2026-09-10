@@ -584,8 +584,10 @@ dev = [
     { name = "pytest-benchmark" },
     { name = "pytest-cov" },
     { name = "sphinx", marker = "python_full_version >= '3.12'" },
-    { name = "tbump" },
     { name = "towncrier" },
+]
+release = [
+    { name = "tbump" },
 ]
 
 [package.metadata]
@@ -597,9 +599,9 @@ dev = [
     { name = "pytest-benchmark", specifier = "==5.3.0" },
     { name = "pytest-cov", specifier = "==7.1.0" },
     { name = "sphinx", marker = "python_full_version >= '3.12'", specifier = "==9.1.0" },
-    { name = "tbump", specifier = "==6.11.0" },
     { name = "towncrier", specifier = "==25.8.0" },
 ]
+release = [{ name = "tbump", specifier = "==6.11.0" }]
 
 [[package]]
 name = "mypy"
