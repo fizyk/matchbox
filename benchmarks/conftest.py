@@ -1,7 +1,6 @@
 """Benchmark fixtuires."""
 
 from random import Random
-from typing import List, Set
 
 import pytest
 
@@ -21,7 +20,7 @@ ARMREST_MATCH_RANDOMIZER = Random("armrest_match")
 
 
 @pytest.fixture(scope="session")
-def chairs() -> Set[Chair]:
+def chairs() -> set[Chair]:
     """Return data fixtures for benchmarks."""
     chairs_list = []
     for i in range(SIZE):
@@ -44,9 +43,9 @@ def chairs() -> Set[Chair]:
 
 
 @pytest.fixture(scope="session")
-def boxes(chairs: Set[Chair]) -> List[MatchBox]:  # pylint:disable=redefined-outer-name
+def boxes(chairs: set[Chair]) -> list[MatchBox]:  # pylint:disable=redefined-outer-name
     """Fixture with built boxes."""
-    boxes_list: List[MatchBox] = [
+    boxes_list: list[MatchBox] = [
         MatchBox[str, Chair]("colour"),
         MatchBox[int, Chair]("legs"),
         MatchBox[int, Chair]("size"),

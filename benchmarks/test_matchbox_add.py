@@ -1,7 +1,6 @@
 """Reference performance tests - adding entities to MatchBox."""
 
-from collections import namedtuple
-from typing import Any, Set, Tuple
+from typing import Any, NamedTuple
 
 import pytest
 from pytest_benchmark.fixture import BenchmarkFixture
@@ -9,12 +8,17 @@ from pytest_benchmark.fixture import BenchmarkFixture
 from benchmarks import Chair
 from matchbox import MatchBox
 
-Dummy = namedtuple("Dummy", "c c_match")
+
+class Dummy(NamedTuple):
+    """Dummy class for testing."""
+
+    c: Any
+    c_match: bool
 
 
 @pytest.mark.benchmark(group="create")
 @pytest.mark.parametrize("characteristic", ["colour", "legs", "size", "weight", "armrest"])
-def test_create(benchmark: BenchmarkFixture, chairs: Set[Chair], characteristic: str) -> None:
+def test_create(benchmark: BenchmarkFixture, chairs: set[Chair], characteristic: str) -> None:
     """Reference benchmark to record times in regards to adding elements from chairs fixture to MatchBox."""
     matchbox = MatchBox[Any, Chair](characteristic)
 
@@ -38,7 +42,7 @@ def test_create(benchmark: BenchmarkFixture, chairs: Set[Chair], characteristic:
         pytest.param((Dummy(1, True), Dummy(2, False)), id="TwoElementsDifferentValueAndOneMatchingOtherNo"),
     ],
 )
-def test_add(benchmark: BenchmarkFixture, elements: Tuple[Dummy]) -> None:
+def test_add(benchmark: BenchmarkFixture, elements: tuple[Dummy]) -> None:
     """Test benchmark adding specified set of elements to MatchBox."""
     matchbox = MatchBox[bool, Dummy]("c")
 
