@@ -1,23 +1,22 @@
 """MatchBoxes benchamr tests."""
 
-from collections import namedtuple
+from typing import Any, NamedTuple
 
-Chair = namedtuple(
-    "Chair",
-    (
-        "id",
-        "colour",
-        "colour_match",
-        "legs",
-        "legs_match",
-        "size",
-        "size_match",
-        "weight",
-        "weight_match",
-        "armrest",
-        "armrest_match",
-    ),
-)
+
+class Chair(NamedTuple):
+    """Chair class for testing."""
+
+    id: Any
+    colour: str | None
+    colour_match: bool
+    legs: int
+    legs_match: bool
+    size: int
+    size_match: bool
+    weight: float
+    weight_match: bool
+    armrest: bool
+    armrest_match: bool
 
 
 SIZE = 100000
