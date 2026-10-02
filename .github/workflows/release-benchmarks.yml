@@ -1,0 +1,19 @@
+name: Benchmark release
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions: {}
+
+jobs:
+  benchmark:
+    permissions:
+      contents: write  # github-action-benchmark pushes results and comments on commits
+    uses: $/.github/workflows/benchmarks.yml
+    with:
+      publish: true
+      data-dir: benchmarks/releases
+      # Keep every release, it's one point per release anyway
+      max-items: ''

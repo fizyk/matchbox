@@ -30,3 +30,5 @@ jobs:
     permissions:
       contents: write  # github-action-benchmark pushes results and comments on commits
     uses: $/.github/workflows/benchmarks.yml
+    with:
+      publish: true

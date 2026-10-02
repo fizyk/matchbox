@@ -1,14 +1,31 @@
 name: Run benchmarks
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      python-versions:
+        description: JSON list of Python versions to benchmark. Charts of other versions get removed on publish.
+        type: string
+        default: '["3.11", "3.12", "3.13", "3.14", "3.15", "pypy-3.11"]'
+      publish:
+        description: Store results on gh-pages instead of only analysing them.
+        type: boolean
+        default: false
+      data-dir:
+        description: Directory on gh-pages to store results in.
+        type: string
+        default: benchmarks
+      max-items:
+        description: Number of results kept per chart. Empty keeps all of them.
+        type: string
+        default: '100'
 
 jobs:
   bench:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11", "3.12", "3.13", "3.14", "3.15", "pypy-3.11"]
+        python-version: ${{ fromJSON(inputs.python-versions) }}
     env:
       OS: ubuntu-latest
       PYTHON: ${{ matrix.python-version }}
@@ -24,7 +41,7 @@ jobs:
         command: "pytest benchmarks/  --benchmark-json output.json"
     - name: Analyse benchmark results for Pull Requests
       uses: benchmark-action/github-action-benchmark@4322e5726e6334590d251fc4f92bec0efafc45dc # v1.22.2
-      if: ${{ github.ref != 'refs/heads/main' }}
+      if: ${{ !inputs.publish }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
         tool: 'pytest'
@@ -38,21 +55,62 @@ jobs:
         summary-always: true
         fail-on-alert: false
         alert-comment-cc-users: '@fizyk'
-    - name: Store benchmark result for master branch
+    - name: Store benchmark result
       uses: benchmark-action/github-action-benchmark@4322e5726e6334590d251fc4f92bec0efafc45dc # v1.22.2
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ inputs.publish }}
       with:
         name: Matchbox performance benchmarks on Python ${{ matrix.python-version }}
         tool: 'pytest'
         output-file-path: output.json
 #        # Use personal access token instead of GITHUB_TOKEN due to https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/td-p/26869/highlight/false
 #        github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        max-items-in-chart: 100
+        max-items-in-chart: ${{ inputs.max-items }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
         auto-push: true
-        benchmark-data-dir-path: benchmarks
+        benchmark-data-dir-path: ${{ inputs.data-dir }}
         # Show alert with commit comment on detecting possible performance regression
         alert-threshold: '200%'
         comment-on-alert: true
         fail-on-alert: false
         alert-comment-cc-users: '@fizyk'
+
+  prune:
+    needs: bench
+    if: ${{ inputs.publish }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+        sparse-checkout: .github/scripts
+        path: source
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+        ref: gh-pages
+        path: gh-pages
+    - name: Remove benchmarks of unsupported Python versions
+      working-directory: gh-pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DATA_DIR: ${{ inputs.data-dir }}
+        PYTHON_VERSIONS: ${{ inputs.python-versions }}
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        # gh-pages may move under us (other benchmark runs push there too), so retry on a rejected push
+        for attempt in 1 2 3; do
+          python3 ../source/.github/scripts/prune_benchmarks.py "$DATA_DIR/data.js" "$PYTHON_VERSIONS"
+          if git diff --quiet; then
+            echo "Nothing to prune"
+            exit 0
+          fi
+          git commit -am "Remove benchmarks of unsupported Python versions from $DATA_DIR"
+          if git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages; then
+            exit 0
+          fi
+          echo "Push rejected (attempt $attempt), retrying on top of current gh-pages"
+          git fetch origin gh-pages
+          git reset --hard FETCH_HEAD
+        done
+        exit 1

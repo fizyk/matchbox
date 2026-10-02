@@ -29,6 +29,7 @@ Documentation:
 
 * `Documentation <http://fizyk.github.io/matchbox/docs/>`_
 * `Benchmarks <http://fizyk.github.io/matchbox/benchmarks/>`_
+* `Release benchmarks <http://fizyk.github.io/matchbox/benchmarks/releases/>`_
 
 
 

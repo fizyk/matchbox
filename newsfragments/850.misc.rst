@@ -1,0 +1,1 @@
+Remove benchmark charts of no longer supported Python versions and benchmark every release separately.
