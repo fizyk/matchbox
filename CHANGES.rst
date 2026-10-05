@@ -3,6 +3,27 @@ CHANGELOG
 
 .. towncrier release notes start
 
+matchbox 2.0.0 (2026-10-05)
+===========================
+
+Breaking changes
+----------------
+
+- Drop support for Python 3.10 (`#857 <https://github.com/fizyk/matchbox/issues/857>`_)
+
+
+Features
+--------
+
+- Add support for Python 3.15 (`#857 <https://github.com/fizyk/matchbox/issues/857>`_)
+
+
+Miscellaneous
+-------------
+
+- `#850 <https://github.com/fizyk/matchbox/issues/850>`_, `#860 <https://github.com/fizyk/matchbox/issues/860>`_, `#864 <https://github.com/fizyk/matchbox/issues/864>`_, `#864 <https://github.com/fizyk/matchbox/issues/864>`_, `#872 <https://github.com/fizyk/matchbox/issues/872>`_, `#876 <https://github.com/fizyk/matchbox/issues/876>`_
+
+
 matchbox 1.3.1 (2026-09-05)
 ===========================
 
